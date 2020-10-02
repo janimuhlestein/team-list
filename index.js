@@ -137,8 +137,9 @@ const inquirer = require('inquirer');
     };
 
    
-promptManager()
-.then(promptEmployees)
+promptManager(manager)
+.then(promptEmployees(employeeArray))
 .then(employeeArray => {
-    console.log(employeeArray.employees);
+    generateTemplate(employeeArray)
+    console.log(generateTemplate(employeeArray));
 });

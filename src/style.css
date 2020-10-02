@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: red;
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    margin: 20px;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+.row {
+    margin: 20px;
+}
+
+.row p {
+    font-weight: bold;
+}
+
+.panel-heading {
+    background-color: blue !important;
+}
+
+.head-text {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
