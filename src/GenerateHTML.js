@@ -1,5 +1,8 @@
+const engineer = require('../lib/Engineer');
+const manager = require('../lib/Manager');
+const intern = require('../lib/Intern');
+
 const generateManager = manager => {
-   // const {name, id, email,officeNumber} = manager;
     return `
     <div class ="col-sm-4 col-xs-12">
     <div class = "panel panel-default text-center">
@@ -8,7 +11,7 @@ const generateManager = manager => {
         <h3 class = "head-text"><i class="fas fa-user-tie"></i> Manager</h3>
     </div>
     <div class = "panel-body">
-        <p>ID: ${maager.id}</p>
+        <p>ID: ${manager.id}</p>
         <p>Email: ${manager.email}</p>
         <p>Office Number: ${manager.officeNumber}</p>
     </div>
@@ -18,20 +21,20 @@ const generateManager = manager => {
 
 };
 
-generateEmployee = employeesArr => {
-    const {employeeType}= employeesArr;
+const generateEmployee = employeesArr => {
+    const {employeeType, name, id, email, github, school}= employeesArr;
     if(employeeType === 'engineer') {
         return `
         <div class = "col-sm-4 col-xs-12">
         <div class = "panel panel-default text-center">
         <div class = "panel-heading">
-            <h2 class = "head-text">${employee.name}</h2>
+            <h2 class = "head-text">${name}</h2>
             <h3 class = "head-text"><i class="fas fa-file-code"></i> Engineer</h3>
         </div>
         <div class = "panel-body">
-            <p>ID: ${employee.id}</p>
-            <p>Email: ${employee.email}</p>
-            <p>GitHub: <a href='https://github.com/${employee.github}'>https://github.com/${employee.github}</a></p>
+            <p>ID: ${id}</p>
+            <p>Email: ${email}</p>
+            <p>GitHub: <a href='https://github.com/${github}'>https://github.com/${github}</a></p>
         </div>
     </div>
     </div>
@@ -41,13 +44,13 @@ generateEmployee = employeesArr => {
         <div class = "col-sm-4 col-xs-12">
         <div class = "panel panel-default text-center">
         <div class = "panel-heading">
-            <h2 class = "head-text">${employee.name}</h2>
+            <h2 class = "head-text">${name}</h2>
             <h3 class = "head-text"><i class="fas fa-user-graduate"></i> Intern</h3>
         </div>
         <div class = "panel-body">
-            <p>ID: ${employee.id}</p>
-            <p>Email: ${employee.email}</p>
-            <p>School:${employee.school}</p>
+            <p>ID: ${id}</p>
+            <p>Email: ${email}</p>
+            <p>School:${school}</p>
         </div>
     </div>
 </div>
@@ -55,7 +58,7 @@ generateEmployee = employeesArr => {
     }
 };
 
-const generateTemplate = () => {
+const generateTemplate = employeeArr => {
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -82,4 +85,8 @@ const generateTemplate = () => {
 </body>
 </html>
 `
+};
+
+module.exports = {
+    generateTemplate: generateTemplate
 };

@@ -1,5 +1,5 @@
-const GenerateHTML = require('./src/GenerateHTML');
-const CreatePage = require('./src/CreatePage');
+const generateTemplate = require('./src/GenerateHTML');
+const Print = require('./src/CreatePage');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -53,7 +53,7 @@ const inquirer = require('inquirer');
         ])
         .then(answers=> {
             manager = new Manager(answers.name,answers.id, answers.officeNumber);
-            console.log(manager);
+            //console.log(manager);
             return manager;
         });
     };
@@ -118,7 +118,7 @@ const inquirer = require('inquirer');
                 type: 'confirm',
                 name: 'confirmAddEmployee',
                 message: 'Would you like to add another employee?',
-                default: false
+                default: true
             }
             ])
             .then(answers => {
@@ -137,9 +137,11 @@ const inquirer = require('inquirer');
     };
 
    
-promptManager(manager)
-.then(promptEmployees(employeeArray))
+promptManager()
+.then(promptEmployees)
 .then(employeeArray => {
-    generateTemplate(employeeArray)
-    console.log(generateTemplate(employeeArray));
+    return generateTemplate(employeeArray);
+})
+.catch(err => {
+    console.log(err);
 });
