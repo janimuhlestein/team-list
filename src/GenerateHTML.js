@@ -1,9 +1,6 @@
-const engineer = require('../lib/Engineer');
-const manager = require('../lib/Manager');
-const intern = require('../lib/Intern');
 const Manager = require('../lib/Manager');
-const Engineer = require('../lib/Engineer');
 
+//Generate HTML for the Manager
 const generateManager = manager => {
     return `
     <div class ="col-sm-4 col-xs-12">
@@ -22,71 +19,8 @@ const generateManager = manager => {
     `
 };
 
-/*
-const generateEmployee = employeeArr => {
-    console.log(employeeArr);
-    for(let i = 0; i < employeeArr.length; i++) {
-        //console.log(employeeArr[i]);
-        if(employeeArr[i].employeeType === 'engineer'){
-            console.log("That's an engineer");
-            name = employeeArr[i].name;
-            name = new Engineer(employeeArr[i].name, employeeArr[i].id, employeeArr[i].github);
-            //console.log(name);
-        } else {
-            console.log("That's an intern");
-        }
-    }
-};
-    
-  
- 
-  /*const generateEmployee = employeeArr => {
-      //console.log(employeeArr);
-      for(let i = 0; i< employeeArr.length; i++) {
-          return `
-          <div class = "col-sm-4 col-xs-12">
-          <div class = "panel panel-default text-center">
-          <div class = "panel-heading">
-              <h2 class = "head-text">${employeeArr[i].getName()}</h2>
-              <h3 class = "head-text"><i class="fas fa-file-code"></i> ${employeeArr[i].getRole()}</h3>
-          </div>
-          <div class = "panel-body">
-              <p>ID: ${employeeArr[i].getId()}</p>
-              <p>Email: ${employeeArr[i].getEmail()}<</p>
-              <p>School: ${employeeArr[i].getSchool()}</a></p>
-          </div>
-      </div>
-      </div>
-          `
-      }
-    /*employeeArr
-        .filter(({Intern})=>Intern).map(({name,id,email, school})=> {
-            console.log(Intern.name, Intern.id, Intern.school);
-    return `
-    <div class = "col-sm-4 col-xs-12">
-            <div class = "panel panel-default text-center">
-            <div class = "panel-heading">
-                <h2 class = "head-text">${name}</h2>
-                <h3 class = "head-text"><i class="fas fa-file-code"></i> Engineer</h3>
-            </div>
-            <div class = "panel-body">
-                <p>ID: ${id}</p>
-                <p>Email: ${email}<</p>
-                <p>School: ${school}</a></p>
-            </div>
-        </div>
-        </div>
-
-    `
-
-        });
-  };*/
-
-  const generateEmployee = employeeArr => {
-      console.log(employeeArr);
-      for (let i = 0; i< employeeArr.length; i++) {
-          console.log(employeeArr[i].getRole());
-      if(employeeArr[i].getRole()=== 'Intern') {
+//Generate the HTML for the interns
+  const generateIntern = employeeArr => {
         return `
         ${employeeArr.map(({name, id, email, school})=> {
             return `
@@ -94,7 +28,7 @@ const generateEmployee = employeeArr => {
             <div class = "panel panel-default text-center">
             <div class = "panel-heading">
                 <h2 class = "head-text">${name}</h2>
-                <h3 class = "head-text"><i class="fas fa-file-code"></i> Intern</h3>
+                <h3 class = "head-text"><i class="fas fa-user-graduate"></i> Intern</h3>
             </div>
             <div class = "panel-body">
                 <p>ID: ${id}</p>
@@ -107,7 +41,10 @@ const generateEmployee = employeeArr => {
         })
         .join('')}
         `;
-    } else {
+    };
+
+    //generate the HTML for the engineers
+    const generateEngineer = employeeArr => {
         return `
         ${employeeArr.map(({name, id, email, github})=> {
             return `
@@ -120,28 +57,21 @@ const generateEmployee = employeeArr => {
             <div class = "panel-body">
                 <p>ID: ${id}</p>
                 <p>Email: ${email}<</p>
-                <p>Github: ${github}</a></p>
+                <p>GitHub: <a href='https://github.com/${github}'>https://github.com/${github}</a></p>
             </div>
         </div>
         </div>
           `;
         })
         .join('')}
-        `; 
-        }
-        }
+        `;
     };
 
-    
 
-
-
-
-
+//generate the main HTML
 const generateTemplate = employeeData => {
-    const {employees, name, id, officeNumber}= employeeData;
+    const {engineers, interns, name, id, officeNumber}= employeeData;
     const manager = new Manager(name, id, officeNumber);
-    //console.log(employeeData);
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -161,7 +91,8 @@ const generateTemplate = employeeData => {
 <div class = "container-fluid">
     <div class = "row">
     ${generateManager(manager)}
-    ${generateEmployee(employees)}
+    ${generateEngineer(engineers)}
+    ${generateIntern(interns)}
 </div>
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script> 
@@ -170,5 +101,8 @@ const generateTemplate = employeeData => {
 `
 };
 
-//module.exports = generateTemplate;
-module.exports =  generateEmployee;
+module.exports = generateTemplate;
+//module.exports =  {
+//    generateEngineer: generateEngineer,
+////    generateIntern: generateIntern
+//};

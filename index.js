@@ -1,6 +1,6 @@
-//const generateTemplate = require('./src/GenerateHTML');
-const generateEmployee = require('./src/GenerateHTML');
-const Print = require('./src/CreatePage');
+const generateTemplate = require('./src/GenerateHTML');
+//const {generateEngineer, generateIntern} = require('./src/GenerateHTML');
+const {writeFile, copyFile} = require('./src/CreatePage');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -55,8 +55,11 @@ const inquirer = require('inquirer');
     };
     
         const promptEmployees = employeeArray => {
-            if(!employeeArray.employees) {
-               employeeArray.employees = [];
+            if(!employeeArray.engineers) {
+               employeeArray.engineers = [];
+            }
+            if(!employeeArray.interns) {
+                employeeArray.interns = [];
             }
 
             console.log(`
@@ -121,12 +124,14 @@ const inquirer = require('inquirer');
                 if(employeeData.employeeType === 'engineer'){
                     name = new Engineer(employeeData.name, employeeData.id,
                         employeeData.github);
+                    employeeArray.engineers.push(name);
                 } else {
                     name = new Intern(employeeData.name, employeeData.id, 
                         employeeData.school);
+                        employeeArray.interns.push(name);
 
                 }
-               employeeArray.employees.push(name);
+              // employeeArray.employees.push(name);
                if(employeeData.confirmAddEmployee) {
                    return promptEmployees(employeeArray);
                } else {
@@ -139,8 +144,19 @@ const inquirer = require('inquirer');
 promptManager()
 .then(promptEmployees)
 .then(employeeArray => {
-    //console.log(generateTemplate(employeeData));
-    console.log(generateEmployee(employeeArray.employees));
+    return generateTemplate(employeeArray);
+   // console.log(generateEngineer(employeeArray.engineers));
+    //console.log(generateIntern(employeeArray.interns));
+})
+.then(pageHTML => {
+    return writeFile(pageHTML);
+})
+.then(writeFileResponse => {
+    console.log(writeFileResponse);
+    return copyFile()
+})
+.then(copyFileResponse => {
+    console.log(copyFileResponse);
 })
 .catch(err => {
     console.log(err);
