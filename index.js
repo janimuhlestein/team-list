@@ -1,4 +1,5 @@
-const generateTemplate = require('./src/GenerateHTML');
+//const generateTemplate = require('./src/GenerateHTML');
+const generateEmployee = require('./src/GenerateHTML');
 const Print = require('./src/CreatePage');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -8,7 +9,7 @@ const inquirer = require('inquirer');
 //Ask the user for the team names and positions, then generate the page from the template
 //then, create the page using the helper function and copy the stylesheet as well
 
-        const promptManager = () => {
+    const promptManager = () => {
         return inquirer.prompt([
             {
                 type: 'input',
@@ -51,11 +52,6 @@ const inquirer = require('inquirer');
                 }
             }
         ])
-        .then(answers=> {
-            manager = new Manager(answers.name,answers.id, answers.officeNumber);
-            //console.log(manager);
-            return manager;
-        });
     };
     
         const promptEmployees = employeeArray => {
@@ -121,14 +117,17 @@ const inquirer = require('inquirer');
                 default: true
             }
             ])
-            .then(answers => {
-                if(answers.employeeType === 'engineer') {
-                    employee = new Engineer(answers.name, answers.id, answers.github);
+            .then(employeeData => {
+                if(employeeData.employeeType === 'engineer'){
+                    name = new Engineer(employeeData.name, employeeData.id,
+                        employeeData.github);
                 } else {
-                    employee = new Intern(answers.name, answers.id, answers.school);
+                    name = new Intern(employeeData.name, employeeData.id, 
+                        employeeData.school);
+
                 }
-               employeeArray.employees.push(employee);
-               if(promptEmployees.confirmAddEmployee) {
+               employeeArray.employees.push(name);
+               if(employeeData.confirmAddEmployee) {
                    return promptEmployees(employeeArray);
                } else {
                    return employeeArray;
@@ -136,12 +135,13 @@ const inquirer = require('inquirer');
             });
     };
 
-   
+  
 promptManager()
 .then(promptEmployees)
 .then(employeeArray => {
-    return generateTemplate(employeeArray);
+    //console.log(generateTemplate(employeeData));
+    console.log(generateEmployee(employeeArray.employees));
 })
 .catch(err => {
     console.log(err);
-});
+}); 
