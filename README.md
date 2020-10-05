@@ -2,6 +2,16 @@
 
 # A team-list web-page generation tool.
 
+It would be helpful to have a tool to automatically generate a team list web page. The web page must contain different items for different employees. The manager must display the name, id, and office number. The engineer must display the name, id, and github user id, along with a link to the repository. The intern must display the name, id, and school they attend.
+
+The tool must ask for the information, and then automatically generate the html. It must also copy the style.css page to the distribution directory.
+
+## Test Functionality:
+
+Each of the user objects must be tested for correct information. Each test must pass before writing of main functionality commences.
+
+![tests](https://user-images.githubusercontent.com/52082187/95040806-055e7380-0692-11eb-8245-ba7f4e776f10.jpg)
+
 ## Question Functionality:
 
 The tool asks the user for information on their team, requesting different information depending on the team member type. For Manager, it asks for the name, employee ID, and Office Number. For Engineers, it asks for name, employee ID, and github username. For Interns, it asks for name, employee ID, and school.
