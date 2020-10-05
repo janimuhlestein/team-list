@@ -1,4 +1,6 @@
+const Intern = require('../lib/Intern');
 const Manager = require('../lib/Manager');
+const Engineer = require('../lib/Engineer');
 
 //Generate HTML for the Manager
 const generateManager = manager => {
@@ -19,7 +21,7 @@ const generateManager = manager => {
     `
 };
 
-//Generate the HTML for the interns
+
   const generateIntern = employeeArr => {
         return `
         ${employeeArr.map(({name, id, email, school})=> {
@@ -42,6 +44,7 @@ const generateManager = manager => {
         .join('')}
         `;
     };
+      
 
     //generate the HTML for the engineers
     const generateEngineer = employeeArr => {
@@ -102,7 +105,3 @@ const generateTemplate = employeeData => {
 };
 
 module.exports = generateTemplate;
-//module.exports =  {
-//    generateEngineer: generateEngineer,
-////    generateIntern: generateIntern
-//};
