@@ -26,4 +26,4 @@ The HTML is passed on to the writePage and copyPage functionality, which writes 
 
 
 ## Gif of tool in action:
-![displaygif](https://drive.google.com/file/d/1oeqL35O2Tjno6P1NRNppSWwGr8g6A4T2/view)
+https://drive.google.com/file/d/1oeqL35O2Tjno6P1NRNppSWwGr8g6A4T2/view
