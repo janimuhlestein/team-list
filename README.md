@@ -25,5 +25,5 @@ The HTML is passed on to the writePage and copyPage functionality, which writes 
 ![webpagecreated](https://user-images.githubusercontent.com/52082187/95036552-89f6c500-0685-11eb-89c0-1e1d6248abfe.jpg)
 
 
-
 ## Gif of tool in action:
+![displaygif](https://drive.google.com/file/d/1oeqL35O2Tjno6P1NRNppSWwGr8g6A4T2/view)
