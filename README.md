@@ -18,7 +18,9 @@ The HTML functions take in the manager information, and each of the employee arr
 
 The HTML is passed on to the writePage and copyPage functionality, which writes the information in the dist directory, and then copies the source style.css into that directory as well.
 
-## Image of generated page:
+## Images of tool use and generated page:
+
+![tooluse](https://user-images.githubusercontent.com/52082187/95036369-f45b3580-0684-11eb-9361-4c65fde16652.jpg)
 
 
 
